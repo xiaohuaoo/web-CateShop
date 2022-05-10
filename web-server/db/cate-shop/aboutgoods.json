@@ -1,0 +1,43 @@
+[{
+  "_id": {
+    "$oid": "6262a1f92601b9a258cf2acc"
+  },
+  "goodsName": "水果馅饼",
+  "shortName": "",
+  "goodsImg": "http://localhost:3000/aboutimg/about1.jpg",
+  "goodsPrice": "28",
+  "normalPrice": "26",
+  "salesTips": "",
+  "goodsCategory": "",
+  "goodsCounts": 2,
+  "__v": 0,
+  "aboutgoodsId": "0"
+},{
+  "_id": {
+    "$oid": "6262a1f92601b9a258cf2acd"
+  },
+  "goodsName": "水果馅饼",
+  "shortName": "",
+  "goodsImg": "http://localhost:3000/aboutimg/about2.jpg",
+  "goodsPrice": "28",
+  "normalPrice": "26",
+  "salesTips": "",
+  "goodsCategory": "",
+  "goodsCounts": 2,
+  "__v": 0,
+  "aboutgoodsId": "1"
+},{
+  "_id": {
+    "$oid": "6262a1f92601b9a258cf2ace"
+  },
+  "goodsName": "水果馅饼",
+  "shortName": "",
+  "goodsImg": "http://localhost:3000/aboutimg/about3.jpg",
+  "goodsPrice": "28",
+  "normalPrice": "26",
+  "salesTips": "",
+  "goodsCategory": "",
+  "goodsCounts": 2,
+  "__v": 0,
+  "aboutgoodsId": "2"
+}]
