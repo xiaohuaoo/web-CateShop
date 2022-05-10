@@ -1,0 +1,99 @@
+[{
+  "_id": {
+    "$oid": "62527c99a44532321ee5a30e"
+  },
+  "goodsId": "0",
+  "goodsName": "水果馅饼",
+  "shortName": "",
+  "goodsImg": "http://localhost:3000/menuimg/menu1.jpg",
+  "goodsPrice": "28",
+  "normalPrice": "26",
+  "salesTips": "",
+  "goodsCategory": "",
+  "goodsCounts": 2,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62527c99a44532321ee5a30f"
+  },
+  "goodsId": "1",
+  "goodsName": "冰淇淋泡芙",
+  "shortName": "",
+  "goodsImg": "http://localhost:3000/menuimg/menu2.jpg",
+  "goodsPrice": "48",
+  "normalPrice": "26",
+  "salesTips": "",
+  "goodsCategory": "",
+  "goodsCounts": 2,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62527c99a44532321ee5a310"
+  },
+  "goodsId": "2",
+  "goodsName": "水果小方",
+  "shortName": "",
+  "goodsImg": "http://localhost:3000/menuimg/menu3.jpg",
+  "goodsPrice": "35",
+  "normalPrice": "26",
+  "salesTips": "",
+  "goodsCategory": "",
+  "goodsCounts": 2,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62527c99a44532321ee5a311"
+  },
+  "goodsId": "3",
+  "goodsName": "巧克力蛋糕",
+  "shortName": "",
+  "goodsImg": "http://localhost:3000/menuimg/menu4.jpg",
+  "goodsPrice": "58",
+  "normalPrice": "26",
+  "salesTips": "",
+  "goodsCategory": "",
+  "goodsCounts": 2,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "625280b9b15009b4f4d2b863"
+  },
+  "goodsId": "4",
+  "goodsName": "巧克力蛋糕",
+  "shortName": "",
+  "goodsImg": "http://localhost:3000/menuimg/menu5.jpg",
+  "goodsPrice": "58",
+  "normalPrice": "26",
+  "salesTips": "",
+  "goodsCategory": "",
+  "goodsCounts": 2,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "625283c5be1b3f8457ac265e"
+  },
+  "goodsId": "5",
+  "goodsName": "巧克力蛋糕",
+  "shortName": "",
+  "goodsImg": "http://localhost:3000/menuimg/menu6.jpg",
+  "goodsPrice": "58",
+  "normalPrice": "26",
+  "salesTips": "",
+  "goodsCategory": "",
+  "goodsCounts": 2,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "625283c5be1b3f8457ac265f"
+  },
+  "goodsId": "6",
+  "goodsName": "巧克力蛋糕",
+  "shortName": "",
+  "goodsImg": "http://localhost:3000/menuimg/menu7.jpg",
+  "goodsPrice": "58",
+  "normalPrice": "26",
+  "salesTips": "",
+  "goodsCategory": "",
+  "goodsCounts": 2,
+  "__v": 0
+}]

@@ -1,0 +1,23 @@
+[{
+  "_id": {
+    "$oid": "623ebb55e1f0422b25aa4b49"
+  },
+  "userName": "xiaohua",
+  "password": "123",
+  "userEmail": "",
+  "userPhone": "",
+  "userSex": "",
+  "userAdress": "",
+  "userSign": "",
+  "userAvatar": "http://localhost:3000/uploads/userxiaohua.png",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6265ee66f66cef1e6d69b14b"
+  },
+  "userName": "xiaohuaoo",
+  "password": "12345",
+  "userEmail": "",
+  "userPhone": "",
+  "__v": 0
+}]
