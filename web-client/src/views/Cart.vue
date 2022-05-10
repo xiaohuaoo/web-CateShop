@@ -277,24 +277,24 @@ export default {
               goodsCategory: goods.goodsCategory,
               receiverName: this.orderForm.receiverName
             }
-            console.log(createOrderInfo)
+            // console.log(createOrderInfo)
             const result = await createOrder(createOrderInfo)
-            console.log(result)
+            // console.log(result)
+            if (result.status_code !== 200) {
+              this.$alert({
+                showClose: true,
+                message: result.message,
+                type: 'error'
+              })
+            } else {
+              this.$message({
+                showClose: true,
+                message: result.message,
+                type: 'success'
+              })
+            }
           }
         })
-        // if (result.status_code !== 200) {
-        //   this.$alert({
-        //     showClose: true,
-        //     message: result.message,
-        //     type: 'error'
-        //   })
-        // } else {
-        //   this.$message({
-        //     showClose: true,
-        //     message: result.message,
-        //     type: 'success'
-        //   })
-        // }
       }).catch(() => {
         this.$message({
           type: 'info',
