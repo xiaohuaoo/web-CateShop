@@ -9,21 +9,13 @@ export function userRegister (data) {
   })
 }
 
-// // 验证邮箱
-// export function sendMail (params) {
-//   return request({
-//     url: '/user/sendmail',
-//     params
-//   })
-// }
-
-// // 检查邮箱是否已被注册
-// export function checkEmail (params) {
-//   return request({
-//     url: '/user/checkemail',
-//     params
-//   })
-// }
+// 验证邮箱
+export function sendMail (params) {
+  return request({
+    url: '/user/sendmail',
+    params
+  })
+}
 
 // 用户登录
 export function userLogin (data) {

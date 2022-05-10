@@ -1,8 +1,8 @@
 import express from 'express'
 import config from '../src/config.js'
-// import md5 from 'md5'
+import md5 from 'md5'
 import path from 'path'
-import multer from 'multer'
+// import multer from 'multer'
 
 import {
     User,
@@ -17,9 +17,28 @@ import {
     Book
 } from '../db/db'
 
+import {
+	sendMail,
+	randomNum
+} from '../util/util'
+
 const router = express.Router();
 
-const SECRET_PASSWD = 'xiaohua' 
+const SECRET_PASSWD = 'xiaohuaoo' 
+
+//验证邮箱
+router.get('/sendmail', (req, res) => {
+	let userEmail = req.query.userEmail;
+	let confirmMes = randomNum();
+	req.session.userEmail = req.query.userEmail;
+	req.session.confirmMes = confirmMes;
+	console.log("验证码："+ confirmMes)
+	sendMail(userEmail, '欢迎注册AirFish电商网站！', `您的注册验证码是:${confirmMes}`);
+	res.json({
+		status_code: 200,
+		message: '验证码已发送'
+	})
+})
 
 // 获取轮播图
 router.get('/gethomecasual', async (req, res) => {
@@ -36,17 +55,12 @@ router.get('/gethomecasual', async (req, res) => {
 router.post('/register', async (req,res) => {
     let regForm = req.body;
     // console.log(regForm)
-    // if(regForm.confirmMes === req.session.confirmMes&&regForm.userEmail === req.session.userEmail){
+    if(regForm.confirmMes === req.session.confirmMes&&regForm.userEmail === req.session.userEmail){
         User.create({
             userName: regForm.userName,
-            password: regForm.password,
+            password: md5(md5(regForm.password) + SECRET_PASSWD), //加密密码
             userEmail: regForm.userEmail,
             userPhone: regForm.tel
-            // userSex: String,
-            // userAdress: String,
-            // userSign: String,
-            // userAvatar: String,
-            // nickName: String
         }, (err, doc)=> {
             if (!err) {
                 res.json({
@@ -60,12 +74,12 @@ router.post('/register', async (req,res) => {
 				})
             }
         })
-    // }else {
-    //     res.json({
-    //         status_code: 400,
-    //         message: '注册失败'
-    //     })
-    // }
+    }else {
+        res.json({
+            status_code: 400,
+            message: '注册失败'
+        })
+    }
 })
 
 //检查邮箱是否已注册
@@ -89,53 +103,50 @@ router.get('/checkemail', async (req, res) => {
 
 // 用户登录
 router.post('/userLogin', async (req,res) => {
-    let userName = req.body.userName
-    // let userPwd = md5(md5(req.body.password
-    //     + SECRET_PASSWD))
-    let userPwd = req.body.password
-    let resultName = await User.findOne({
-        userName
-    })
-    let resultEmail = await User.findOne({
-        userEmail: userName
-    })
-    if (resultName || resultEmail) {
-        if (resultName) {
-            if(userPwd===resultName.password){
-                req.session.user = resultName.userName
-                res.json({
-                status_code: 200,
-                message: '登陆成功',
-                userName: resultName.userName
-                })
-            }else {
-                res.json({
-                status_code: 400,
-                message: '密码错误'
-                })
-            }
-        }else {
-            // 邮箱登陆
-            if(userPwd===resultEmail.password){
-                req.session.user = resultEmail.userName
-                res.json({
-                status_code: 200,
-                message: '登陆成功',
-                userName: resultEmail.userName
-                })
-            }else {
-                res.json({
-                status_code: 400,
-                message: '密码错误'
-                })
-            }
-        }
-    } else {
-        res.json({
-            status_code: 400,
-            message: '该账号不存在'
-        })
-    }
+    let userName = req.body.userName;
+	let userPsw = md5(md5(req.body.password) + SECRET_PASSWD);
+	let resultName = await User.findOne({
+		userName
+	})
+	let resultEmail = await User.findOne({
+		userEmail: userName
+	})
+	if (resultName || resultEmail) {
+		if (resultName) {
+			if (userPsw === resultName.password) {
+				req.session.user = resultName.userName;
+				res.json({
+					status_code: 200,
+					message: '登录成功',
+					userName: resultName.userName
+				})
+			} else {
+				res.json({
+					status_code: 400,
+					message: '密码错误'
+				})
+			}
+		} else {
+			if (userPsw === resultEmail.password) {
+				req.session.user = resultEmail.userName;
+				res.json({
+					status_code: 200,
+					message: '登录成功',
+					userName: resultEmail.userName
+				})
+			} else {
+				res.json({
+					status_code: 400,
+					message: '密码错误'
+				})
+			}
+		}
+	} else {
+		res.json({
+			status_code: 400,
+			message: '用户名或邮箱不存在'
+		})
+	}
 })
 
 // 验证是否是用户

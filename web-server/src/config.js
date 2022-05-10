@@ -11,8 +11,8 @@ export default{
     secret: 'a1962400598@163.com',
     maxAge: 1000 * 60 * 60 * 6	,//session保存6个小时
 	email: {
-	    service: 'pop.163.com',  //邮箱服务商
-	    user: 'A1962400598@163.com',	//发送验证码的邮箱
-	    pass: 'CSITNSCPWOTAMIDX',  //邮箱服务密匙
+	    service: 'xxxxxxx',  //邮箱服务商
+	    user: 'xxxxxxxxx',	//发送验证码的邮箱
+	    pass: 'xxxxxxxxx',  //邮箱服务密匙
 	}
 }

@@ -15,11 +15,19 @@
         <el-form-item label="手机号" prop="tel">
             <el-input type="tel" v-model="userRegisterForm.tel" autocomplete="off"></el-input>
         </el-form-item>
+        <!-- 邮箱 -->
+        <el-form-item prop="userEmail">
+          <el-input v-model="userRegisterForm.userEmail" prefix-icon="el-icon-message" placeholder="邮箱" type="text"
+           clearable></el-input>
+        </el-form-item>
         <!-- 验证码 -->
-        <el-form-item label="验证码" prop="">
-            <el-input prefix-icon="el-icon-message" placeholder="验证码" type="text" clearable>
-                <el-button type="text" style="width: 110px;" :disabled="isConfirmClick">{{confirmClick}}</el-button>
-            </el-input>
+        <el-form-item prop="confirmMes">
+          <el-input v-model="userRegisterForm.confirmMes" prefix-icon="el-icon-message" placeholder="验证码" type="text"
+           clearable>
+            <template slot="append">
+              <el-button type="text" style="width: 110px;" @click="confirmMes" :disabled="isConfirmClick">{{confirmClick}}</el-button>
+            </template>
+          </el-input>
         </el-form-item>
         <el-form-item>
             <el-button type="primary" @click="userRegister()" :loading="isRegister" style="width:100%">注册</el-button>
@@ -31,7 +39,7 @@
 </template>
 
 <script>
-import { userRegister } from '@/network/api'
+import { sendMail, userRegister } from '@/network/api'
 
 export default {
   name: 'UserRegister',
@@ -39,6 +47,9 @@ export default {
   props: {},
   data () {
     return {
+      confirmClick: '获取验证码',
+      isEmail: false,
+      isConfirmClick: false,
       userRegisterForm: {
         userName: '',
         password: '',
@@ -48,8 +59,6 @@ export default {
         userEmail: '',
         confirmMes: ''
       },
-      confirmClick: '获取验证码',
-      isConfirmClick: false,
       userRegisterFormValidate: {
         userName: [
           { required: true, message: '请输入用户名/邮箱', trigger: 'change' }
@@ -59,6 +68,12 @@ export default {
         ],
         repassword: [
           { required: true, message: '请输入密码', trigger: 'change' }
+        ],
+        userEmail: [
+          { required: true, message: '请填写邮箱', trigger: 'blur' }
+        ],
+        confirmMes: [
+          { required: true, message: '请填写验证码', trigger: 'blur' }
         ]
       },
       isRegister: false
@@ -67,6 +82,42 @@ export default {
   created () {},
   mounted () {},
   methods: {
+    // 通过用户填写的邮箱发送验证码
+    confirmMes () {
+      // if (!this.isEmail) {
+      //   this.$alert({
+      //     showClose: true,
+      //     message: '请先填写正确邮箱',
+      //     type: 'error'
+      //   })
+      //   return
+      // }
+      // 发送验证码
+      sendMail({
+        userEmail: this.userRegisterForm.userEmail
+      }).then(result => {
+        this.$message({
+          showClose: true,
+          message: result.message,
+          type: 'success'
+        })
+      })
+      // 禁止按钮
+      this.isConfirmClick = true
+      let s = 60
+      this.confirmClick = `${s}秒后重新发送`
+      s--
+      // 设置倒计时
+      const time = setInterval(() => {
+        this.confirmClick = `${s}秒后重新发送`
+        s--
+        if (s < 0) {
+          clearInterval(time)
+          this.isConfirmClick = false
+          this.confirmClick = '发送验证码'
+        }
+      }, 1000)
+    },
     async userRegister () {
       this.$refs.userRegisterForm.validate(async boolean => {
         this.isRegister = true
