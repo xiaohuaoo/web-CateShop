@@ -112,9 +112,9 @@
 
   - 将`web-serve/db/cate-shop`文件夹下的数据导入到`MongoDB`数据库中。
 
-    数据库导出命令:`mongodump -h 127.0.0.1 -d cateshop-o E:\Program\E-Music\web-serve\db`,
+    数据库导出命令:`mongodump -h 127.0.0.1 -d cate-shop -o D:\Cate-Shop\web-serve\db`,
 
-    数据库导入命令:`mongorestore -d cate-shop E:\Program\E-Music\web-serve\db\cate-shop`
+    数据库导入命令:`mongorestore -d cate-shop D:\Cate-Shop\web-serve\db\cate-shop`
 
   - 修改`web-server/src/config.js`文件，根据注释按需修改。注册使用了邮箱验证，需要手动开启自己邮箱的POP3/SMTP/IMAP服务，具体过程这里不再赘述。
 
